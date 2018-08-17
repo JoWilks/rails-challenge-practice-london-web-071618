@@ -1,0 +1,9 @@
+<h1>Office: <%=@office.floor%> </h1>
+
+<h3>Building: <%=@office.building.name%></h3>
+<h3>Floor: <%=@office.floor%></h3>
+<h3>Company: <%=@office.company.name%></h3>
+<h3>Employees: </h3>
+<%@office.employees.each do |employee|%>
+<%=employee.name%> | <%=employee.title%> <br>
+<%end%>

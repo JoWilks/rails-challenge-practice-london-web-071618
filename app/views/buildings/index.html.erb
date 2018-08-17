@@ -1,0 +1,14 @@
+<h1>Buildings</h1>
+
+<ul>
+<% @buildings.each do |building| %>
+<h3><%=link_to building.name, building_path(building)%></h3>
+<h5>Floors Available:</h5>
+<ul>
+  <%building.number_of_floors_available.each do |floor|%>
+  <li><%=floor%></li>
+  <%end%>
+</ul>
+<% end%>
+
+</ul>

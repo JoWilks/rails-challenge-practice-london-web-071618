@@ -1,0 +1,13 @@
+<h1>Create a new Company</h1>
+
+<%= form_tag companies_path do%>
+<h2>Name: </h2> <%=text_field_tag name="company[name]"%> <br>
+<h2>Buildings: </h2>
+<% @buildings.each do |building| %>
+ <h3><%=building.name%></h3>
+  <h4>Available Floors: <%building.number_of_floors_available.each do |floor|%>
+     <%=floor%><%=check_box_tag "building[#{building.id}][]", floor%>
+     <%end%></h4>
+ <%end%><br>
+<%= submit_tag "Create Company"%>
+<%end%>

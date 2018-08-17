@@ -1,0 +1,30 @@
+<h1><%=@company.name%><h1>
+
+<h2>Offices</h2>
+<% @company.offices.each do |office| %>
+  Building: <%= office.building.name %> | Floor: <%= office.floor %> <br>
+<%end%>
+
+<h2>Total Rent</h2>
+£<%=@company.total_rent%>
+
+<h2>Add Employee</h2>
+<%= form_for @employee do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %> <br>
+<%= f.label :title %>
+<%= f.text_field :title %>
+<%= f.label :office_id %>
+<%= f.collection_select :office_id, @company.offices, :id, :floor %>
+<%= f.hidden_field :company_id, value: @company.id%><br>
+<%= f.submit %>
+<% end %>
+
+<h2>Employees</h2>
+<% @company.employees.each do |employee| %>
+<%=employee.name%> | <%=employee.title%>
+<%=form_tag employee_path(employee.id), method: "delete" do%>
+<%=hidden_field_tag :company_id, @company.id %>
+<%=submit_tag "Delete #{employee.name}"%>
+<%end%><br>
+<%end%>
